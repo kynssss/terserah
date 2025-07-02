@@ -1,0 +1,156 @@
+body {
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(to right, #d8b4f8, #fbc2eb);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.card {
+  width: 500px;
+  height: 300px;
+  position: relative;
+  perspective: 1200px;
+  cursor: pointer;
+}
+
+.card-half {
+  width: 50%;
+  height: 100%;
+  background-color: #fff5f8;
+  position: absolute;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-style: preserve-3d;
+  transition: transform 1s;
+  box-shadow: 0 0 8px rgba(0,0,0,0.3);
+  z-index: 2;
+}
+
+.left {
+  left: 0;
+  transform-origin: left;
+  border-right: 1px solid #333;
+}
+
+.right {
+  right: 0;
+  transform-origin: right;
+  border-left: 1px solid #333;
+}
+
+.card-inside {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #f3e8ff;
+  padding: 30px;
+  box-sizing: border-box;
+  text-align: center;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.card.open .left {
+  transform: rotateY(-150deg);
+  z-index: 0;
+}
+
+.card.open .right {
+  transform: rotateY(150deg);
+  z-index: 0;
+}
+
+.card.open .card-inside {
+  opacity: 1;
+}
+
+p{
+  font-size: 15px;
+  text-align: center;
+  color: #5d2a00;
+  line-height: 1.2;
+}
+
+/* Cake styling */
+.cake {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  height: 100%;
+  position: relative;
+}
+
+.layer {
+  background-color: #8baa67;
+  border-top: 20px solid #cde4b0;
+  height: 25px;
+  margin: 2px 0;
+  position: relative;
+}
+
+.layer::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 20px;
+  top: -20px;
+  background: radial-gradient(circle at 10% 50%, #cde4b0 20%, transparent 20%),
+              radial-gradient(circle at 30% 50%, #cde4b0 20%, transparent 20%),
+              radial-gradient(circle at 50% 50%, #cde4b0 20%, transparent 20%),
+              radial-gradient(circle at 70% 50%, #cde4b0 20%, transparent 20%),
+              radial-gradient(circle at 90% 50%, #cde4b0 20%, transparent 20%);
+  background-size: 20% 100%;
+  background-repeat: repeat-x;
+}
+
+.layer.bottom {
+  width: 150px;
+}
+
+.layer.middle {
+  width: 120px;
+}
+
+.layer.top {
+  width: 90px;
+}
+
+.candle {
+  width: 10px;
+  height: 30px;
+  background: repeating-linear-gradient(
+    45deg,
+    red,
+    red 5px,
+    white 5px,
+    white 10px
+  );
+  margin-top: 5px;
+  position: relative;
+  z-index: 1;
+}
+
+.flame {
+  width: 10px;
+  height: 10px;
+  background: yellow;
+  border-radius: 50%;
+  position: flex;
+  top: -10px;
+  left: 0;
+  animation: flicker 0.8s infinite alternate;
+}
+
+@keyframes flicker {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(1.2); opacity: 0.8; }
+}
